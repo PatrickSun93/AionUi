@@ -657,5 +657,18 @@
     "agent": "Agent",
     "agentDesc": "Used for DingTalk conversations"
   },
+  "discord": {
+    "botTokenDesc": "Create a bot at discord.com/developers, enable MESSAGE CONTENT INTENT, then paste your bot token here.",
+    "agentDesc": "Used for Discord conversations",
+    "pluginEnabled": "Discord bot enabled",
+    "pluginDisabled": "Discord bot disabled",
+    "credentialsRequired": "Please configure a Discord bot token first",
+    "enableFailed": "Failed to enable Discord plugin",
+    "disableFailed": "Failed to disable Discord plugin",
+    "step1": "Invite your bot to a server, or open a DM with it in Discord.",
+    "step2": "@mention the bot in a channel, or send it a direct message to start pairing.",
+    "step3": "The bot will reply with a pairing code. Return here and click \"Approve\" to authorize yourself.",
+    "step4": "Once approved, @mention the bot with your task and it will respond with the result!"
+  },
   "extensionAssistantReadonly": "Extension assistants are read-only. You can duplicate it and edit the copy."
 }

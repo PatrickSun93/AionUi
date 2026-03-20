@@ -659,5 +659,18 @@
     "agent": "에이전트",
     "agentDesc": "DingTalk 대화에 사용"
   },
+  "discord": {
+    "botTokenDesc": "discord.com/developers에서 봇을 만들고 MESSAGE CONTENT INTENT를 활성화한 후 Bot Token을 여기에 붙여넣으세요.",
+    "agentDesc": "Discord 대화에 사용",
+    "pluginEnabled": "Discord 봇이 활성화되었습니다",
+    "pluginDisabled": "Discord 봇이 비활성화되었습니다",
+    "credentialsRequired": "먼저 Discord Bot Token을 설정해 주세요",
+    "enableFailed": "Discord 플러그인 활성화 실패",
+    "disableFailed": "Discord 플러그인 비활성화 실패",
+    "step1": "봇을 서버에 초대하거나 Discord에서 직접 DM을 보내세요.",
+    "step2": "채널에서 봇을 @멘션하거나 DM을 보내 페어링을 시작하세요.",
+    "step3": "봇이 페어링 코드로 답장합니다. 여기로 돌아와 \"승인\"을 클릭하여 본인을 인증하세요.",
+    "step4": "승인 후, 봇을 @멘션하고 작업을 보내면 결과를 받을 수 있습니다!"
+  },
   "extensionAssistantReadonly": "확장 어시스턴트는 읽기 전용입니다. 복제하여 편집할 수 있습니다."
 }

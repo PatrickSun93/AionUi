@@ -14,3 +14,6 @@ export * from './telegram/TelegramKeyboards';
 
 // DingTalk plugin
 export { DingTalkPlugin } from './dingtalk/DingTalkPlugin';
+
+// Discord plugin
+export { DiscordPlugin } from './discord/DiscordPlugin';

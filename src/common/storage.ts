@@ -125,6 +125,12 @@ export interface IConfigStorageRefer {
     customAgentId?: string;
     name?: string;
   };
+  // Discord assistant agent selection / Discord 助手所使用的 Agent
+  'assistant.discord.agent'?: {
+    backend: AcpBackendAll;
+    customAgentId?: string;
+    name?: string;
+  };
   // Skills Market: whether the aionui-skills builtin skill is enabled
   'skillsMarket.enabled'?: boolean;
 }

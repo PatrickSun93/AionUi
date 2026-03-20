@@ -659,5 +659,18 @@
     "agent": "エージェント",
     "agentDesc": "DingTalk の会話に使用"
   },
+  "discord": {
+    "botTokenDesc": "discord.com/developers でボットを作成し、MESSAGE CONTENT INTENT を有効にしてから、Bot Token をここに貼り付けてください。",
+    "agentDesc": "Discord の会話に使用",
+    "pluginEnabled": "Discord ボットが有効になりました",
+    "pluginDisabled": "Discord ボットが無効になりました",
+    "credentialsRequired": "Discord Bot Token を先に設定してください",
+    "enableFailed": "Discord プラグインの有効化に失敗しました",
+    "disableFailed": "Discord プラグインの無効化に失敗しました",
+    "step1": "ボットをサーバーに招待するか、Discord で直接 DM を送ってください。",
+    "step2": "チャンネルでボットを @メンション するか、DM を送ってペアリングを開始します。",
+    "step3": "ボットがペアリングコードを返信します。こちらに戻り「承認」をクリックして自分を認証してください。",
+    "step4": "承認後、ボットを @メンション してタスクを送ると、結果が返ってきます！"
+  },
   "extensionAssistantReadonly": "拡張アシスタントは読み取り専用です。複製して編集することができます。"
 }

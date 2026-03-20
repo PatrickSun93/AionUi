@@ -60,6 +60,7 @@ export function hasPluginCredentials(type: PluginType, credentials?: IPluginCred
   if (type === 'lark') return !!(credentials.appId && credentials.appSecret);
   if (type === 'dingtalk') return !!(credentials.clientId && credentials.clientSecret);
   if (type === 'telegram') return !!credentials.token;
+  if (type === 'discord') return !!credentials.token;
   // Extension or unknown plugins: check if any credential value is non-empty
   return Object.values(credentials).some((v) => v !== undefined && v !== null && v !== '');
 }
@@ -518,14 +519,14 @@ export function pairingRequestToRow(request: IChannelPairingRequest): IChannelPa
  * Channel platform type for model configuration.
  * Includes built-in platforms and extension-contributed platforms (string).
  */
-export type ChannelPlatform = 'telegram' | 'lark' | 'dingtalk' | (string & {});
+export type ChannelPlatform = 'telegram' | 'lark' | 'dingtalk' | 'discord' | (string & {});
 
 /**
  * Type guard to check if a string is a known built-in ChannelPlatform.
  * Extension platform types are valid but not matched here.
  */
-export function isBuiltinChannelPlatform(value: string): value is 'telegram' | 'lark' | 'dingtalk' {
-  return value === 'telegram' || value === 'lark' || value === 'dingtalk';
+export function isBuiltinChannelPlatform(value: string): value is 'telegram' | 'lark' | 'dingtalk' | 'discord' {
+  return value === 'telegram' || value === 'lark' || value === 'dingtalk' || value === 'discord';
 }
 
 /**
@@ -561,7 +562,7 @@ export function getChannelConversationName(
   backend?: string,
   chatId?: string
 ): string {
-  const shortPlatform: Record<string, string> = { telegram: 'tg', dingtalk: 'ding' };
+  const shortPlatform: Record<string, string> = { telegram: 'tg', dingtalk: 'ding', discord: 'dc' };
   const parts: string[] = [shortPlatform[platform] ?? platform];
   if (type) parts.push(type);
   if (type === 'acp' && backend) parts.push(backend);

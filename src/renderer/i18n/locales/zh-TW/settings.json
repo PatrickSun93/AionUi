@@ -659,5 +659,18 @@
     "agent": "對話Agent",
     "agentDesc": "用於與Channel進行對話"
   },
+  "discord": {
+    "botTokenDesc": "在 discord.com/developers 建立機器人，開啟 MESSAGE CONTENT INTENT，然後將 Bot Token 貼上至此。",
+    "agentDesc": "用於 Discord 對話",
+    "pluginEnabled": "Discord 機器人已啟用",
+    "pluginDisabled": "Discord 機器人已停用",
+    "credentialsRequired": "請先設定 Discord Bot Token",
+    "enableFailed": "啟用 Discord 插件失敗",
+    "disableFailed": "停用 Discord 插件失敗",
+    "step1": "將機器人邀請到伺服器，或在 Discord 中直接向它傳送私訊。",
+    "step2": "在頻道中 @提及 機器人，或向它傳送私訊以開始配對。",
+    "step3": "機器人將回覆一組配對碼，返回此處點擊「批准」以授權自己。",
+    "step4": "授權後，用 @提及 機器人並輸入任務，它將返回執行結果！"
+  },
   "extensionAssistantReadonly": "擴展助手為唯讀，你可以複製它並編輯副本。"
 }

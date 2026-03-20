@@ -658,5 +658,18 @@
     "agentDesc": "用于与Channel进行对话"
   },
   "addAssistant": "添加助手",
+  "discord": {
+    "botTokenDesc": "在 discord.com/developers 创建机器人，开启 MESSAGE CONTENT INTENT，然后将 Bot Token 粘贴到此处。",
+    "agentDesc": "用于 Discord 对话",
+    "pluginEnabled": "Discord 机器人已启用",
+    "pluginDisabled": "Discord 机器人已禁用",
+    "credentialsRequired": "请先配置 Discord Bot Token",
+    "enableFailed": "启用 Discord 插件失败",
+    "disableFailed": "禁用 Discord 插件失败",
+    "step1": "将机器人邀请到服务器，或在 Discord 中直接向它发送私信。",
+    "step2": "在频道中 @提及 机器人，或向它发送私信以开始配对。",
+    "step3": "机器人将回复一个配对码，返回此处点击「批准」以授权自己。",
+    "step4": "授权后，用 @提及 机器人并输入任务，它将返回执行结果！"
+  },
   "extensionAssistantReadonly": "扩展助手为只读，你可以复制它并编辑副本。"
 }

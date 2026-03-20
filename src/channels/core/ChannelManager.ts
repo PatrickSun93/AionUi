@@ -12,6 +12,7 @@ import { ActionExecutor } from '../gateway/ActionExecutor';
 import { PluginManager, registerPlugin } from '../gateway/PluginManager';
 import { PairingService } from '../pairing/PairingService';
 import { DingTalkPlugin } from '../plugins/dingtalk/DingTalkPlugin';
+import { DiscordPlugin } from '../plugins/discord/DiscordPlugin';
 import { LarkPlugin } from '../plugins/lark/LarkPlugin';
 import { TelegramPlugin } from '../plugins/telegram/TelegramPlugin';
 import { isBuiltinChannelPlatform, resolveChannelConvType } from '../types';
@@ -50,6 +51,7 @@ export class ChannelManager {
     registerPlugin('telegram', TelegramPlugin);
     registerPlugin('lark', LarkPlugin);
     registerPlugin('dingtalk', DingTalkPlugin);
+    registerPlugin('discord', DiscordPlugin);
   }
 
   /**
@@ -180,7 +182,7 @@ export class ChannelManager {
     }
 
     const enabledPlugins = result.data.filter((p) => p.enabled);
-    const builtinStartableTypes = new Set<PluginType>(['telegram', 'lark', 'dingtalk']);
+    const builtinStartableTypes = new Set<PluginType>(['telegram', 'lark', 'dingtalk', 'discord']);
     const extensionRegistry = ExtensionRegistry.getInstance();
 
     for (const plugin of enabledPlugins) {
@@ -246,7 +248,7 @@ export class ChannelManager {
     let pluginRuntimeConfig = existing?.config ? { ...existing.config } : {};
 
     // Extract credentials based on plugin type
-    if (pluginType === 'telegram') {
+    if (pluginType === 'telegram' || pluginType === 'discord') {
       const token = config.token as string | undefined;
       if (token) {
         credentials = { token };
@@ -394,6 +396,15 @@ export class ChannelManager {
       };
     }
 
+    if (pluginType === 'discord') {
+      const result = await DiscordPlugin.testConnection(token);
+      return {
+        success: result.success,
+        botUsername: result.botInfo?.username,
+        error: result.error,
+      };
+    }
+
     if (pluginType === 'lark') {
       const appId = extraConfig?.appId;
       const appSecret = extraConfig?.appSecret;
@@ -506,8 +517,8 @@ export class ChannelManager {
 
       // For gemini + model info: update existing conversations' model field
       if (newType === 'gemini' && model?.id && model?.useModel) {
-        if (isBuiltinChannelPlatform(platform)) {
-          const builtinPlatform: 'telegram' | 'lark' | 'dingtalk' = platform;
+        if (isBuiltinChannelPlatform(platform) && platform !== 'discord') {
+          const builtinPlatform: 'telegram' | 'lark' | 'dingtalk' = platform as 'telegram' | 'lark' | 'dingtalk';
           const fullModel = await getChannelDefaultModel(builtinPlatform);
           const db = getDatabase();
           const result = db.updateChannelConversationModel(builtinPlatform, 'gemini', fullModel);

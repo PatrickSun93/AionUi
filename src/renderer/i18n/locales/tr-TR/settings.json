@@ -657,5 +657,18 @@
     "agent": "Ajan",
     "agentDesc": "DingTalk sohbetleri icin kullanilir"
   },
+  "discord": {
+    "botTokenDesc": "discord.com/developers adresinde bir bot olusturun, MESSAGE CONTENT INTENT'i etkinlestirin ve Bot Token'inizi buraya yapistirun.",
+    "agentDesc": "Discord sohbetleri icin kullanilir",
+    "pluginEnabled": "Discord botu etkinlestirildi",
+    "pluginDisabled": "Discord botu devre disi birakildi",
+    "credentialsRequired": "Lutfen once bir Discord Bot Token'i yapilandirin",
+    "enableFailed": "Discord eklentisi etkinlestirilemedi",
+    "disableFailed": "Discord eklentisi devre disi birakilamadi",
+    "step1": "Botu bir sunucuya davet edin veya Discord'da dogrudan DM gonderin.",
+    "step2": "Eslestirmeyi baslatmak icin bir kanalda botu @mensiyon yapin veya DM gonderin.",
+    "step3": "Bot bir eslestirme koduyla yanit verecektir. Buraya donun ve kendinizi yetkilendirmek icin 'Onayla'ya tiklayin.",
+    "step4": "Onaylandiktan sonra, botu @mensiyon yapip gorev gonderin, sonucu alacaksiniz!"
+  },
   "extensionAssistantReadonly": "Uzantı asistanları salt okunurdur. Kopyalayıp düzenleyebilirsiniz."
 }

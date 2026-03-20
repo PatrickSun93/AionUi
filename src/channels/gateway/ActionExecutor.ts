@@ -28,6 +28,7 @@ import {
 import { convertHtmlToDingTalkMarkdown } from '../plugins/dingtalk/DingTalkAdapter';
 import { createMainMenuKeyboard, createToolConfirmationKeyboard } from '../plugins/telegram/TelegramKeyboards';
 import { escapeHtml } from '../plugins/telegram/TelegramAdapter';
+import { convertHtmlToDiscordMarkdown } from '../plugins/discord/DiscordAdapter';
 import type { ChannelAgentType, IUnifiedIncomingMessage, IUnifiedOutgoingMessage, PluginType } from '../types';
 import type { PluginManager } from './PluginManager';
 import type { AcpBackend } from '@/types/acpTypes';
@@ -104,6 +105,9 @@ function formatTextForPlatform(text: string, platform: PluginType): string {
   }
   if (platform === 'dingtalk') {
     return convertHtmlToDingTalkMarkdown(text);
+  }
+  if (platform === 'discord') {
+    return convertHtmlToDiscordMarkdown(text);
   }
   return escapeHtml(text);
 }
@@ -379,7 +383,14 @@ export class ActionExecutor {
       // Get or create session (scoped by chatId for per-chat isolation)
       let session = this.sessionManager.getSession(channelUser.id, chatId);
       if (!session || !session.conversationId) {
-        const source = platform === 'lark' ? 'lark' : platform === 'dingtalk' ? 'dingtalk' : 'telegram';
+        const source =
+          platform === 'lark'
+            ? 'lark'
+            : platform === 'dingtalk'
+              ? 'dingtalk'
+              : platform === 'discord'
+                ? 'discord'
+                : 'telegram';
 
         // Read selected agent for this platform (defaults to Gemini)
         let savedAgent: unknown = undefined;
@@ -388,7 +399,9 @@ export class ActionExecutor {
             ? ProcessConfig.get('assistant.lark.agent')
             : platform === 'dingtalk'
               ? ProcessConfig.get('assistant.dingtalk.agent')
-              : ProcessConfig.get('assistant.telegram.agent'));
+              : platform === 'discord'
+                ? ProcessConfig.get('assistant.discord.agent')
+                : ProcessConfig.get('assistant.telegram.agent'));
         } catch {
           // ignore
         }
