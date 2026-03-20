@@ -204,8 +204,13 @@ export function initFsBridge(): void {
   const canceledZipRequests = new Set<string>();
 
   ipcBridge.fs.getFilesByDir.provider(async ({ dir }) => {
-    const tree = await readDirectoryRecursive(dir);
-    return tree ? [tree] : [];
+    try {
+      const tree = await readDirectoryRecursive(dir);
+      return tree ? [tree] : [];
+    } catch (error) {
+      console.error('[fsBridge] Failed to read directory:', dir, error);
+      return [];
+    }
   });
 
   ipcBridge.fs.getImageBase64.provider(async ({ path: filePath }) => {
@@ -576,8 +581,16 @@ export function initFsBridge(): void {
         lastModified: stats.mtime.getTime(),
       };
     } catch (error) {
-      console.error('Failed to get file metadata:', error);
-      throw error;
+      // Return empty metadata instead of throwing to avoid unhandled rejection
+      // (bridge provider callbacks have no .catch handler)
+      console.error('[fsBridge] Failed to get file metadata:', filePath, error);
+      return {
+        name: path.basename(filePath),
+        path: filePath,
+        size: -1,
+        type: '',
+        lastModified: 0,
+      };
     }
   });
 
@@ -950,9 +963,13 @@ export function initFsBridge(): void {
 
       try {
         await fs.access(targetDir);
+        // Skill already exists in user directory, treat as success (skip copy)
+        // 用户目录已存在同名 skill，视为成功（跳过复制）
+        console.log(`[fsBridge] Skill "${skillName}" already exists in user skills, skipping import`);
         return {
-          success: false,
-          msg: `Skill "${skillName}" already exists in user skills`,
+          success: true,
+          data: { skillName },
+          msg: `Skill "${skillName}" already exists`,
         };
       } catch {
         // User skill doesn't exist
